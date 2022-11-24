@@ -10,7 +10,7 @@ Structure:
 ```
 src
   widgets
-    sidebar
+    Sidebar
       model
         types
           sidebar.ts

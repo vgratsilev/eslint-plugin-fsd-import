@@ -41,7 +41,7 @@ Then configure the rules you want to use under the rules section.
 
 ## Supported Rules
 
-* [fsd-relative-path](docs/rules/fsd-relative-path.md)
+* [fsd-relative-path](https://github.com/vgratsilev/eslint-plugin-fsd-import/blob/main/docs/rules/fsd-relative-path.md)
 Check FSD imports is correct. Imports within one slice should be relative.
 
 
