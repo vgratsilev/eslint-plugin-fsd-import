@@ -7,7 +7,9 @@
   "keywords": [
     "eslint",
     "eslintplugin",
-    "eslint-plugin"
+    "eslint-plugin",
+    "fsd",
+    "feature-sliced"
   ],
   "author": "vgratsilev",
   "main": "./lib/index.js",
