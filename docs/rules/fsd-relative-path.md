@@ -27,22 +27,26 @@ src
         types
           sidebar.ts
       ui
-        sidebar.tsx
+        Sidebar.tsx
+      index.ts
 ```
 
 Examples of **incorrect** code for this rule:
 
 ```js
 // "fsd-import/fsd-relative-path": "error"
+// in Sidebar.tsx
 import { ISidebarItem } from 'widgets/Sidebar/model/types/sidebar';
 
-// "fsd-import/fsd-relative-path": ["error", { alias: "@"}]
+// "fsd-import/fsd-relative-path": ["error", { alias: "@" }]
+// in Sidebar.tsx
 import { ISidebarItem } from '@/widgets/Sidebar/model/types/sidebar';
 ```
 
 Examples of **correct** code for this rule:
 
 ```js
+// in Sidebar.tsx
 import { ISidebarItem } from '../../model/types/sidebar';
 ```
 

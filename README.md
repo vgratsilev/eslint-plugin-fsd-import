@@ -34,7 +34,8 @@ Then configure the rules you want to use under the rules section.
 ```json
 {
     "rules": {
-        "fsd-import/fsd-relative-path": "error"
+        "fsd-import/fsd-relative-path": "error",
+        "fsd-import/public-api-imports": "error",
     }
 }
 ```
@@ -43,5 +44,7 @@ Then configure the rules you want to use under the rules section.
 
 * [fsd-relative-path](https://github.com/vgratsilev/eslint-plugin-fsd-import/blob/main/docs/rules/fsd-relative-path.md)
 Check FSD imports is correct. Imports within one slice should be relative.
+* [public-api-imports](https://github.com/vgratsilev/eslint-plugin-fsd-import/blob/main/docs/rules/public-api-imports.md)
+Check FSD imports is correct. Absolute imports should be only from public API.
 
 
