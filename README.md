@@ -41,10 +41,12 @@ Then configure the rules you want to use under the rules section.
 ```
 
 ## Supported Rules
-
+Check FSD imports is correct:
 * [fsd-relative-path](https://github.com/vgratsilev/eslint-plugin-fsd-import/blob/main/docs/rules/fsd-relative-path.md)
-Check FSD imports is correct. Imports within one slice should be relative.
+ Imports within one slice should be relative.
 * [public-api-imports](https://github.com/vgratsilev/eslint-plugin-fsd-import/blob/main/docs/rules/public-api-imports.md)
-Check FSD imports is correct. Absolute imports should be only from public API.
+Absolute imports should be only from public API.
+* [layer-imports](https://github.com/vgratsilev/eslint-plugin-fsd-import/blob/main/docs/rules/layer-imports.md)
+Modules on one layer can only interact with modules from the layers strictly below.
 
 

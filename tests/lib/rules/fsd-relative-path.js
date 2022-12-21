@@ -1,5 +1,5 @@
 /**
- * @fileoverview feature sliced relative path checker
+ * @fileoverview Rstrict only relative path imports within single slice
  * @author vgratsilev
  */
 'use strict';
