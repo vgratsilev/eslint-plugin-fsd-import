@@ -49,7 +49,7 @@ import { Button } from 'shared/Button.tsx';
 // in src/entities/Article/file.tsx
 import { Button } from '@/shared/Button.tsx';
 
-// "fsd-import/layer-imports": ["error", { alias: "@", testFilesPatterns: ['**/StoreDecorator.tsx'] }]
+// "fsd-import/layer-imports": ["error", { alias: "@", ignoreImportPatterns: ['**/StoreDecorator.tsx'] }]
 // in src/shared/StoreDecorator.tsx
 import { StateSchema } from '@/app/providers/StoreProvider';
 ```
