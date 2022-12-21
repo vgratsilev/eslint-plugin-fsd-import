@@ -36,6 +36,7 @@ Then configure the rules you want to use under the rules section.
     "rules": {
         "fsd-import/fsd-relative-path": "error",
         "fsd-import/public-api-imports": "error",
+        "fsd-import/layer-imports": "error",
     }
 }
 ```
