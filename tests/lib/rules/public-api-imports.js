@@ -75,36 +75,40 @@ ruleTester.run('public-api-imports', rule, {
         {
             code: 'import { addCommentFormActions, addCommentFormReducer } from \'entities/Article/model/slice/addCommentFormSlice.ts\';',
             errors: [{ message: 'Absolute import is allowed only from public API (index.ts).' }],
+            output: 'import { addCommentFormActions, addCommentFormReducer } from \'entities/Article\';'
         },
         {
             code: 'import { addCommentFormActions, addCommentFormReducer } from \'@/entities/Article/model/slice/addCommentFormSlice.ts\';',
             errors: [{ message: 'Absolute import is allowed only from public API (index.ts).' }],
             options: aliasOptions,
+            output: 'import { addCommentFormActions, addCommentFormReducer } from \'@/entities/Article\';'
         },
         {
             filename: 'C:\\project\\src\\entities\\Article\\StoreDecorator.tsx',
-            code: 'import { addCommentFormActions, addCommentFormReducer } from \'entities/Article/testing/file.tsx\'',
+            code: 'import { addCommentFormActions, addCommentFormReducer } from \'entities/Article/testing/file.tsx\';',
             errors: [{ message: 'Absolute import is allowed only from public API (index.ts).' }],
             options: [{ testFilesPatterns: ['**/*.test.ts', '**/*.test.ts', '**/StoreDecorator.tsx'] }],
+            output: 'import { addCommentFormActions, addCommentFormReducer } from \'entities/Article\';'
         },
         {
             filename: 'C:\\project\\src\\entities\\Article\\StoreDecorator.tsx',
-            code: 'import { addCommentFormActions, addCommentFormReducer } from \'@/entities/Article/testing/file.tsx\'',
+            code: 'import { addCommentFormActions, addCommentFormReducer } from \'@/entities/Article/testing/file.tsx\';',
             errors: [{ message: 'Absolute import is allowed only from public API (index.ts).' }],
             options: [{
                 alias: '@',
                 testFilesPatterns: ['**/*.test.ts', '**/*.test.ts', '**/StoreDecorator.tsx'],
             }],
+            output: 'import { addCommentFormActions, addCommentFormReducer } from \'@/entities/Article\';'
         },
         {
             filename: 'C:\\project\\src\\entities\\Article\\forbidden.ts',
-            code: 'import { addCommentFormActions, addCommentFormReducer } from \'entities/Article/testing\'',
+            code: 'import { addCommentFormActions, addCommentFormReducer } from \'entities/Article/testing\';',
             errors: [{ message: 'Test data should be imported from public API (testing.ts).' }],
             options: [{ testFilesPatterns: ['**/*.test.ts', '**/*.test.ts', '**/StoreDecorator.tsx'] }],
         },
         {
             filename: 'C:\\project\\src\\entities\\Article\\forbidden.ts',
-            code: 'import { addCommentFormActions, addCommentFormReducer } from \'@/entities/Article/testing\'',
+            code: 'import { addCommentFormActions, addCommentFormReducer } from \'@/entities/Article/testing\';',
             errors: [{ message: 'Test data should be imported from public API (testing.ts).' }],
             options: [{
                 alias: '@',
