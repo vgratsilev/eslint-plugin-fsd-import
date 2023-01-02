@@ -14,7 +14,7 @@ You should re-export data from index.ts file or from testing.ts for test data.
 
 ```js
 ...
-"fsd-import/public-api-imports": [<enabled>, { alias: string, testFilesPatterns: array }>] 
+"fsd-import/public-api-imports": [<enabled>, { alias: string, testFilesPatterns: array }] 
 ...
 ```
 

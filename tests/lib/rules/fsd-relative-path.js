@@ -25,22 +25,30 @@ ruleTester.run('fsd-relative-path', rule, {
     valid: [
         {
             filename: 'C:\\project\\src\\entities\\Article',
-            code: 'import { addCommentFormActions, addCommentFormReducer } from \'../../model/slice/addCommentFormSlice\';',
+            code: 'import { addCommentFormReducer, addCommentFormActions } from \'../../model/slice/addCommentFormSlice\';',
             errors: [],
         },
     ],
 
     invalid: [
         {
-            filename: 'C:\\project\\src\\entities\\Article',
+            filename: 'C:\\project\\src\\entities\\Article\\index.ts',
             code: 'import { addCommentFormReducer, addCommentFormActions } from \'entities/Article/model/slice/addCommentFormSlice\';',
             errors: [{ message: 'Within one slice all paths should be related.' }],
+            output: 'import { addCommentFormReducer, addCommentFormActions } from \'./model/slice/addCommentFormSlice\';',
         },
         {
-            filename: 'C:\\project\\src\\entities\\Article',
+            filename: 'C:\\project\\src\\entities\\Article\\index.ts',
             code: 'import { addCommentFormReducer, addCommentFormActions } from \'@/entities/Article/model/slice/addCommentFormSlice\';',
             errors: [{ message: 'Within one slice all paths should be related.' }],
             options: [{ alias: '@' }],
+            output: 'import { addCommentFormReducer, addCommentFormActions } from \'./model/slice/addCommentFormSlice\';',
+        },
+        {
+            filename: 'C:\\project\\src\\entities\\Article\\ui\\ArticlePage\\ArticlePage.tsx',
+            code: 'import { addCommentFormReducer, addCommentFormActions } from \'entities/Article/model/slice/addCommentFormSlice\';',
+            errors: [{ message: 'Within one slice all paths should be related.' }],
+            output: 'import { addCommentFormReducer, addCommentFormActions } from \'../../model/slice/addCommentFormSlice\';',
         },
     ],
 });

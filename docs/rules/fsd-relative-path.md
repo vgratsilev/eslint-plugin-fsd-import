@@ -13,7 +13,7 @@ This rule reports on non-relative path imports withing single slice.
 
 ```js
 ...
-"fsd-import/fsd-relative-path": [<enabled>, { alias: string }>] 
+"fsd-import/fsd-relative-path": [<enabled>, { alias: string }] 
 ...
 ```
 
@@ -48,6 +48,9 @@ Examples of **correct** code for this rule:
 ```js
 // in Sidebar.tsx
 import { ISidebarItem } from '../../model/types/sidebar';
+
+// in index.ts
+import { ISidebarItem } from './model/types/sidebar';
 ```
 
 ## When Not To Use It

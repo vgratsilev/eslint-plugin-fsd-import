@@ -1,6 +1,6 @@
 {
   "name": "eslint-plugin-fsd-import",
-  "version": "0.0.9",
+  "version": "0.0.11",
   "description": "Plugin for checking imports path in FSD project",
   "repository": "https://github.com/vgratsilev/eslint-plugin-fsd-import",
   "homepage": "https://github.com/vgratsilev/eslint-plugin-fsd-import#readme",
