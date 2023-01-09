@@ -6,6 +6,7 @@ Absolute imports should be allowed only from public API (index.ts).
 
 This rule reports on absolute imports not from Public API for entities, features, pages, widgets layers. 
 You should re-export data from index.ts file or from testing.ts for test data.
+Auto-fix available.
 
 ## Rule Options
 

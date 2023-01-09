@@ -6,6 +6,7 @@ Design ([FSD](https://feature-sliced.design/)).
 ## Rule Details
 
 This rule reports on non-relative path imports withing single slice.
+Auto-fix available.
 
 ## Rule Options
 
