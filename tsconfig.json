@@ -1,0 +1,32 @@
+{
+  "compilerOptions": {
+    /* Language and Environment */
+    "target": "ES2022",
+    "lib": ["ES2023"],
+
+    /* Modules */
+    "module": "NodeNext",
+    "moduleResolution": "nodenext",
+    "rootDir": "./src",
+    "baseUrl": "./",
+    "outDir": "./lib",
+
+    /* Bundler mode */
+    "skipLibCheck": true,
+    "moduleDetection": "force",
+    "emitDeclarationOnly": false,
+    "esModuleInterop": true,
+
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+
+    /* Extra */
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "docs"]
+}
