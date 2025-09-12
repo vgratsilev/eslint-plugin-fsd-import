@@ -11,11 +11,12 @@ Auto-fix available.
 ## Rule Options
 
 * `alias`: specify this option if you use aliases.
+* `layersOverride`: specify your own slices names.
 * `testFilesPatterns`: specify regex for import from test files.
 
 ```js
 ...
-"fsd-import/public-api-imports": [<enabled>, { alias: string, testFilesPatterns: array }] 
+"fsd-import/public-api-imports": [<enabled>, { alias: string, layersOverride: array, testFilesPatterns: array }] 
 ...
 ```
 
@@ -58,6 +59,10 @@ import { ISidebarItem } from 'widgets/Sidebar/model/types/sidebar';
 // in MainPage.tsx
 import { ISidebarItem } from '@/widgets/Sidebar/model/types/sidebar';
 
+// "fsd-import/public-api-imports": ["error", { layersOverride: ["_widgets"]}]
+// in MainPage.tsx
+import { ISidebarItem } from '_widgets/Sidebar/model/types/sidebar';
+
 // "fsd-import/public-api-imports": ["error", { alias: "@", testFilesPatterns: ['**/StoreDecorator.tsx'] }]
 // in StoreDecorator.tsx
 import { ISidebarItem } from '@/widgets/Sidebar/model/types/sidebar';
@@ -73,6 +78,10 @@ import { ISidebarItem } from 'widgets/Sidebar';
 // "fsd-import/public-api-imports": ["error", { alias: "@"}]
 // in MainPage.tsx
 import { ISidebarItem } from '@/widgets/Sidebar';
+
+// "fsd-import/public-api-imports": ["error", { layersOverride: ["_widgets"]}]
+// in MainPage.tsx
+import { ISidebarItem } from '_widgets/Sidebar';
 
 // "fsd-import/public-api-imports": ["error", { alias: "@", testFilesPatterns: ['**/StoreDecorator.tsx'] }]
 // in StoreDecorator.tsx
