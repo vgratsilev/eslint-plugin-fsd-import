@@ -1,6 +1,6 @@
 {
   "name": "eslint-plugin-fsd-import",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "description": "Plugin for checking imports path in FSD project",
   "repository": "https://github.com/vgratsilev/eslint-plugin-fsd-import",
   "homepage": "https://github.com/vgratsilev/eslint-plugin-fsd-import#readme",
@@ -19,7 +19,7 @@
     "test": "mocha tests --recursive"
   },
   "dependencies": {
-    "micromatch": "^4.0.5",
+    "micromatch": "^4.0.8",
     "requireindex": "^1.2.0"
   },
   "devDependencies": {
