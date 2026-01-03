@@ -28,6 +28,17 @@ const aliasOptions = [
     },
 ];
 
+const layersOverride = [
+    'arbitraryLayer'
+];
+
+const layersOverrideOptions = [
+    {
+        layersOverride
+    }
+];
+
+
 ruleTester.run('public-api-imports', rule, {
     valid: [
         {
@@ -38,6 +49,16 @@ ruleTester.run('public-api-imports', rule, {
             code: 'import { addCommentFormActions, addCommentFormReducer } from \'@/entities/Article\';',
             errors: [],
             options: aliasOptions,
+        },
+        {
+            code: `import { addCommentFormActions, addCommentFormReducer } from '${layersOverride[0]}/Article';`,
+            errors: [],
+            options: layersOverrideOptions,
+        },
+        {
+            code: `import { addCommentFormActions, addCommentFormReducer } from '@/${layersOverride[0]}/Article';`,
+            errors: [],
+            options: [{alias: aliasOptions[0].alias, layersOverride: layersOverrideOptions[0].layersOverride}],
         },
         {
             filename: 'C:\\project\\src\\entities\\Article\\file.test.ts',
@@ -82,6 +103,18 @@ ruleTester.run('public-api-imports', rule, {
             errors: [{ message: 'Absolute import is allowed only from public API (index.ts).' }],
             options: aliasOptions,
             output: 'import { addCommentFormActions, addCommentFormReducer } from \'@/entities/Article\';'
+        },
+        {
+            code: `import { addCommentFormActions, addCommentFormReducer } from '${layersOverride[0]}/Article/model/slice/addCommentFormSlice.ts';`,
+            errors: [{ message: 'Absolute import is allowed only from public API (index.ts).' }],
+            options: layersOverrideOptions,
+            output: `import { addCommentFormActions, addCommentFormReducer } from '${layersOverride[0]}/Article';`
+        },
+        {
+            code: `import { addCommentFormActions, addCommentFormReducer } from '@/${layersOverride[0]}/Article/model/slice/addCommentFormSlice.ts';`,
+            errors: [{ message: 'Absolute import is allowed only from public API (index.ts).' }],
+            options: [{alias: aliasOptions[0].alias, layersOverride: layersOverrideOptions[0].layersOverride}],
+            output: `import { addCommentFormActions, addCommentFormReducer } from '@/${layersOverride[0]}/Article';`
         },
         {
             filename: 'C:\\project\\src\\entities\\Article\\StoreDecorator.tsx',
