@@ -16,7 +16,7 @@ const rule = require('../../../lib/rules/layer-imports'),
 //------------------------------------------------------------------------------
 
 const ruleTester = new RuleTester({
-    parserOptions: {
+    languageOptions: {
         ecmaVersion: 6,
         sourceType: 'module',
     },
@@ -33,52 +33,43 @@ ruleTester.run('layer-imports', rule, {
         {
             filename: 'C:\\project\\src\\features\\Article\\file.test.ts',
             code: 'import { addCommentFormActions, addCommentFormReducer } from \'shared/Button/Button.tsx\';',
-            errors: [],
         },
         {
             filename: 'C:\\project\\src\\features\\Article\\file.test.ts',
             code: 'import { addCommentFormActions, addCommentFormReducer } from \'@/shared/Button/Button.tsx\';',
-            errors: [],
             options: aliasOptions,
         },
         {
             filename: 'C:\\project\\src\\features\\Article\\file.test.ts',
             code: 'import { addCommentFormActions, addCommentFormReducer } from \'entities/Button/Button.tsx\';',
-            errors: [],
         },
         {
             filename: 'C:\\project\\src\\features\\Article\\file.test.ts',
             code: 'import { addCommentFormActions, addCommentFormReducer } from \'@/entities/Button/Button.tsx\';',
-            errors: [],
             options: aliasOptions,
         },
         {
             filename: 'C:\\project\\src\\entities\\Article\\file.test.ts',
             code: 'import { addCommentFormActions, addCommentFormReducer } from \'entities/Button/Button.tsx\';',
-            errors: [],
         },
         {
             filename: 'C:\\project\\src\\app\\Article\\file.test.ts',
             code: 'import { addCommentFormActions, addCommentFormReducer } from \'@/widgets/Button/Button.tsx\';',
-            errors: [],
             options: aliasOptions,
         },
         {
             filename: 'C:\\project\\src\\widgets\\Article\\file.test.ts',
             code: 'import { useLocation } from \'react-router-dom\';',
-            errors: [],
             options: aliasOptions,
         },
         {
             filename: 'C:\\project\\src\\index.tsx',
             code: 'import { useLocation } from \'@/app/test.ts\';',
-            errors: [],
             options: aliasOptions,
         },
         {
             filename: 'C:\\project\\src\\entities\\Article.tsx',
             code: 'import { StateSchema } from \'@/app/providers/StoreProvider\';',
-            errors: [],
             options: [
                 {
                     alias: '@',

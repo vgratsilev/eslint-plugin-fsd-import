@@ -1,53 +1,60 @@
 # eslint-plugin-fsd-import
 
-Plugin for checking imports path in [FSD](https://feature-sliced.design/) project.
+ESLint plugin for checking import paths in [Feature-Sliced Design](https://feature-sliced.design/) projects.
 
 ## Installation
 
-You'll first need to install [ESLint](https://eslint.org/):
+Install [ESLint](https://eslint.org/) and `eslint-plugin-fsd-import`:
 
 ```sh
-npm i eslint --save-dev
-```
-
-Next, install `eslint-plugin-fsd-import`:
-
-```sh
-npm install eslint-plugin-fsd-import --save-dev
+npm install --save-dev eslint eslint-plugin-fsd-import
 ```
 
 ## Usage
 
-Add `fsd-import` to the plugins section of your `.eslintrc` configuration file. You can omit the `eslint-plugin-` prefix:
+### Flat config
 
-```json
-{
-    "plugins": [
-        "fsd-import"
-    ]
-}
+For ESLint v9 and newer, add the plugin to `eslint.config.js`:
+
+```js
+const fsdImport = require("eslint-plugin-fsd-import");
+
+module.exports = [
+  {
+    plugins: {
+      "fsd-import": fsdImport,
+    },
+    rules: {
+      "fsd-import/fsd-relative-path": "error",
+      "fsd-import/public-api-imports": "error",
+      "fsd-import/layer-imports": "error",
+    },
+  },
+];
 ```
 
+### Legacy config
 
-Then configure the rules you want to use under the rules section.
+For ESLint v8 and older, add `fsd-import` to the plugins section of your `.eslintrc` configuration file. You can omit the `eslint-plugin-` prefix:
 
 ```json
 {
-    "rules": {
-        "fsd-import/fsd-relative-path": "error",
-        "fsd-import/public-api-imports": "error",
-        "fsd-import/layer-imports": "error",
-    }
+  "plugins": ["fsd-import"],
+  "rules": {
+    "fsd-import/fsd-relative-path": "error",
+    "fsd-import/public-api-imports": "error",
+    "fsd-import/layer-imports": "error"
+  }
 }
 ```
 
 ## Supported Rules
-Check FSD imports is correct:
-* [fsd-relative-path](https://github.com/vgratsilev/eslint-plugin-fsd-import/blob/main/docs/rules/fsd-relative-path.md)
- Imports within one slice should be relative.
-* [public-api-imports](https://github.com/vgratsilev/eslint-plugin-fsd-import/blob/main/docs/rules/public-api-imports.md)
-Absolute imports should be only from public API.
-* [layer-imports](https://github.com/vgratsilev/eslint-plugin-fsd-import/blob/main/docs/rules/layer-imports.md)
-Modules on one layer can only interact with modules from the layers strictly below.
 
+Check that FSD imports are correct:
+
+- [fsd-relative-path](https://github.com/vgratsilev/eslint-plugin-fsd-import/blob/main/docs/rules/fsd-relative-path.md) - imports within one slice should be relative.
+- [public-api-imports](https://github.com/vgratsilev/eslint-plugin-fsd-import/blob/main/docs/rules/public-api-imports.md) - absolute imports should use the public API.
+- [layer-imports](https://github.com/vgratsilev/eslint-plugin-fsd-import/blob/main/docs/rules/layer-imports.md) - modules can import only from allowed lower FSD layers; `entities` and `shared` may also import from the same layer.
+
+Rule-specific options and examples are documented on each rule page.
 

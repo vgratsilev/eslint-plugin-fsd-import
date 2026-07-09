@@ -16,7 +16,7 @@ const rule = require('../../../lib/rules/public-api-imports'),
 //------------------------------------------------------------------------------
 
 const ruleTester = new RuleTester({
-    parserOptions: {
+    languageOptions: {
         ecmaVersion: 6,
         sourceType: 'module',
     },
@@ -43,39 +43,32 @@ ruleTester.run('public-api-imports', rule, {
     valid: [
         {
             code: 'import { addCommentFormActions, addCommentFormReducer } from \'../../model/slice/addCommentFormSlice\';',
-            errors: [],
         },
         {
             code: 'import { addCommentFormActions, addCommentFormReducer } from \'@/entities/Article\';',
-            errors: [],
             options: aliasOptions,
         },
         {
             code: `import { addCommentFormActions, addCommentFormReducer } from '${layersOverride[0]}/Article';`,
-            errors: [],
             options: layersOverrideOptions,
         },
         {
             code: `import { addCommentFormActions, addCommentFormReducer } from '@/${layersOverride[0]}/Article';`,
-            errors: [],
             options: [{alias: aliasOptions[0].alias, layersOverride: layersOverrideOptions[0].layersOverride}],
         },
         {
             filename: 'C:\\project\\src\\entities\\Article\\file.test.ts',
             code: 'import { addCommentFormActions, addCommentFormReducer } from \'entities/Article/testing\'',
-            errors: [],
             options: [{ testFilesPatterns: ['**/*.test.ts', '**/*.test.ts', '**/StoreDecorator.tsx'] }],
         },
         {
             filename: 'C:\\project\\src\\entities\\Article\\StoreDecorator.tsx',
             code: 'import { addCommentFormActions, addCommentFormReducer } from \'entities/Article/testing\'',
-            errors: [],
             options: [{ testFilesPatterns: ['**/*.test.ts', '**/*.test.ts', '**/StoreDecorator.tsx'] }],
         },
         {
             filename: 'C:\\project\\src\\entities\\Article\\file.test.ts',
             code: 'import { addCommentFormActions, addCommentFormReducer } from \'@/entities/Article/testing\'',
-            errors: [],
             options: [{
                 alias: '@',
                 testFilesPatterns: ['**/*.test.ts', '**/*.test.ts', '**/StoreDecorator.tsx'],
@@ -84,7 +77,6 @@ ruleTester.run('public-api-imports', rule, {
         {
             filename: 'C:\\project\\src\\entities\\Article\\StoreDecorator.tsx',
             code: 'import { addCommentFormActions, addCommentFormReducer } from \'@/entities/Article/testing\'',
-            errors: [],
             options: [{
                 alias: '@',
                 testFilesPatterns: ['**/*.test.ts', '**/*.test.ts', '**/StoreDecorator.tsx'],

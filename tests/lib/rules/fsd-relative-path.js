@@ -16,7 +16,7 @@ const rule = require('../../../lib/rules/fsd-relative-path'),
 //------------------------------------------------------------------------------
 
 const ruleTester = new RuleTester({
-    parserOptions: {
+    languageOptions: {
         ecmaVersion: 6,
         sourceType: 'module',
     },
@@ -26,7 +26,6 @@ ruleTester.run('fsd-relative-path', rule, {
         {
             filename: 'C:\\project\\src\\entities\\Article',
             code: 'import { addCommentFormReducer, addCommentFormActions } from \'../../model/slice/addCommentFormSlice\';',
-            errors: [],
         },
     ],
 

@@ -1,21 +1,22 @@
-# Check imports have relative path within single slice (fsd-relative-path)
+# Require relative imports within a single slice (fsd-relative-path)
 
-Check imports have relative path within single slice in project used Feature Slice
-Design ([FSD](https://feature-sliced.design/)).
+Checks that imports within the same Feature-Sliced Design
+([FSD](https://feature-sliced.design/)) slice use relative paths.
 
 ## Rule Details
 
-This rule reports on non-relative path imports withing single slice.
-Auto-fix available.
+This rule reports non-relative imports when the importing file and imported module
+belong to the same FSD slice. Auto-fix is available.
+
+The rule checks the following layers: `entities`, `features`, `pages`, `shared`,
+and `widgets`.
 
 ## Rule Options
 
-* `alias`: specify this option if you use aliases.
+* `alias`: alias prefix used for absolute imports.
 
 ```js
-...
-"fsd-import/fsd-relative-path": [<enabled>, { alias: string }] 
-...
+"fsd-import/fsd-relative-path": ["error", { alias: "@" }]
 ```
 
 Project structure example:
@@ -48,7 +49,7 @@ Examples of **correct** code for this rule:
 
 ```js
 // in Sidebar.tsx
-import { ISidebarItem } from '../../model/types/sidebar';
+import { ISidebarItem } from '../model/types/sidebar';
 
 // in index.ts
 import { ISidebarItem } from './model/types/sidebar';
@@ -56,4 +57,4 @@ import { ISidebarItem } from './model/types/sidebar';
 
 ## When Not To Use It
 
-If you do not use Feature Slices Design in your project.
+If you do not use Feature-Sliced Design in your project.
