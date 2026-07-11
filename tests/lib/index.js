@@ -14,6 +14,7 @@ describe('plugin export', () => {
             'no-deprecated-layer-names',
             'public-api-imports',
             'shared-public-api-imports',
+            'slice-boundaries',
         ]);
         assert.strictEqual(packageJson.dependencies?.requireindex, undefined);
     });

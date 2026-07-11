@@ -11,6 +11,7 @@ const rules = {
     'no-deprecated-layer-names': require('../../lib/rules/no-deprecated-layer-names'),
     'public-api-imports': require('../../lib/rules/public-api-imports'),
     'shared-public-api-imports': require('../../lib/rules/shared-public-api-imports'),
+    'slice-boundaries': require('../../lib/rules/slice-boundaries'),
 };
 
 function runWithOptions(name, rule, options) {
@@ -65,6 +66,13 @@ describe('rule option schemas', () => {
             segments: ['ui'],
             ignoreImportPatterns: ['**/generated'],
         }]), []);
+        assert.deepStrictEqual(runWithOptions('slice-boundaries', rules['slice-boundaries'], [{
+            alias: '@',
+            rootDir: 'src',
+            layers: ['entities'],
+            allowTestingPublicApi: true,
+            testFilesPatterns: ['**/*.test.ts'],
+        }]), []);
     });
 
     it('rejects unknown keys, non-string pattern entries, and extra options', () => {
@@ -79,6 +87,8 @@ describe('rule option schemas', () => {
             ['no-deprecated-layer-names', [{ unknown: true }]],
             ['shared-public-api-imports', [{ segments: ['ui', 1] }]],
             ['shared-public-api-imports', [{ unknown: true }]],
+            ['slice-boundaries', [{ allowTestingPublicApi: 'yes' }]],
+            ['slice-boundaries', [{ testFilesPatterns: [1] }]],
             ['fsd-relative-path', [{}, {}]],
         ];
 
