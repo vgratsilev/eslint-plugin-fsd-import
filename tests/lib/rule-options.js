@@ -3,16 +3,7 @@
 const assert = require('assert');
 const Linter = require('eslint').Linter;
 
-const rules = {
-    'forbidden-app-imports': require('../../lib/rules/forbidden-app-imports'),
-    'fsd-relative-path': require('../../lib/rules/fsd-relative-path'),
-    'layer-imports': require('../../lib/rules/layer-imports'),
-    'no-cross-slice-relative-imports': require('../../lib/rules/no-cross-slice-relative-imports'),
-    'no-deprecated-layer-names': require('../../lib/rules/no-deprecated-layer-names'),
-    'public-api-imports': require('../../lib/rules/public-api-imports'),
-    'shared-public-api-imports': require('../../lib/rules/shared-public-api-imports'),
-    'slice-boundaries': require('../../lib/rules/slice-boundaries'),
-};
+const { rules } = require('../../lib');
 
 function runWithOptions(name, rule, options) {
     return new Linter().verify('const value = 1;', [{

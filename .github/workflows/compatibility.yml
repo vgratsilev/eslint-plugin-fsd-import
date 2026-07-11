@@ -23,5 +23,5 @@ jobs:
           node-version: ${{ matrix.node }}
           cache: npm
       - run: npm ci
-      - run: npm install --no-save --package-lock=false eslint@${{ matrix.eslint }}
-      - run: node -e "const plugin = require('./'); if (!plugin.rules['fsd-relative-path']) process.exit(1);"
+      - run: npm install --no-save --package-lock=false --legacy-peer-deps eslint@${{ matrix.eslint }}
+      - run: node -e "const plugin = require('./'); if (!plugin.rules['fsd-relative-path'] || plugin.configs.recommended.plugins[0] !== 'fsd-import' || plugin.configs['flat/recommended'].plugins['fsd-import'] !== plugin) process.exit(1);"

@@ -65,5 +65,9 @@ describe('FSD path helpers', () => {
             resolveRelativeTarget('C:\\project\\src\\entities\\Article\\ui\\Card.tsx', '..\\User\\model.ts'),
             'entities/Article/User/model.ts',
         );
+        assert.strictEqual(
+            resolveRelativeTarget('project\\src\\entities\\Article\\ui\\Card.tsx', '..\\..\\User\\model.ts'),
+            'entities/User/model.ts',
+        );
     });
 });
