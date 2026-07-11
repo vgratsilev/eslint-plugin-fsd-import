@@ -8,6 +8,7 @@ const rules = {
     'fsd-relative-path': require('../../lib/rules/fsd-relative-path'),
     'layer-imports': require('../../lib/rules/layer-imports'),
     'no-cross-slice-relative-imports': require('../../lib/rules/no-cross-slice-relative-imports'),
+    'no-deprecated-layer-names': require('../../lib/rules/no-deprecated-layer-names'),
     'public-api-imports': require('../../lib/rules/public-api-imports'),
     'shared-public-api-imports': require('../../lib/rules/shared-public-api-imports'),
 };
@@ -55,6 +56,10 @@ describe('rule option schemas', () => {
             layers: ['entities'],
             ignoreImportPatterns: ['**/generated'],
         }]), []);
+        assert.deepStrictEqual(runWithOptions('no-deprecated-layer-names', rules['no-deprecated-layer-names'], [{
+            alias: '@',
+            layersMap: { oldEntities: 'entities' },
+        }]), []);
         assert.deepStrictEqual(runWithOptions('shared-public-api-imports', rules['shared-public-api-imports'], [{
             rootDir: 'src',
             segments: ['ui'],
@@ -70,6 +75,8 @@ describe('rule option schemas', () => {
             ['layer-imports', [{ ignoreImportPatterns: ['**/ok', 1] }]],
             ['public-api-imports', [{ testFilesPatterns: [1] }]],
             ['no-cross-slice-relative-imports', [{ layers: ['entities', 1] }]],
+            ['no-deprecated-layer-names', [{ layersMap: { oldEntities: 1 } }]],
+            ['no-deprecated-layer-names', [{ unknown: true }]],
             ['shared-public-api-imports', [{ segments: ['ui', 1] }]],
             ['shared-public-api-imports', [{ unknown: true }]],
             ['fsd-relative-path', [{}, {}]],

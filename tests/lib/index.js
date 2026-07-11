@@ -11,6 +11,7 @@ describe('plugin export', () => {
             'fsd-relative-path',
             'layer-imports',
             'no-cross-slice-relative-imports',
+            'no-deprecated-layer-names',
             'public-api-imports',
             'shared-public-api-imports',
         ]);
