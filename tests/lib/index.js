@@ -7,6 +7,7 @@ const packageJson = require('../../package.json');
 describe('plugin export', () => {
     it('exports its shipped rules explicitly without requireindex', () => {
         assert.deepStrictEqual(Object.keys(plugin.rules).sort(), [
+            'forbidden-app-imports',
             'fsd-relative-path',
             'layer-imports',
             'no-cross-slice-relative-imports',

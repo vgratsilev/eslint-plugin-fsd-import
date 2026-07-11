@@ -4,6 +4,7 @@ const assert = require('assert');
 const Linter = require('eslint').Linter;
 
 const rules = {
+    'forbidden-app-imports': require('../../lib/rules/forbidden-app-imports'),
     'fsd-relative-path': require('../../lib/rules/fsd-relative-path'),
     'layer-imports': require('../../lib/rules/layer-imports'),
     'no-cross-slice-relative-imports': require('../../lib/rules/no-cross-slice-relative-imports'),
@@ -32,6 +33,11 @@ function runWithOptions(name, rule, options) {
 
 describe('rule option schemas', () => {
     it('accepts the documented option shapes', () => {
+        assert.deepStrictEqual(runWithOptions('forbidden-app-imports', rules['forbidden-app-imports'], [{
+            rootDir: 'src',
+            allowPatterns: ['app/providers'],
+            testFilesPatterns: ['**/*.test.ts'],
+        }]), []);
         assert.deepStrictEqual(runWithOptions('fsd-relative-path', rules['fsd-relative-path'], [{ alias: '@', rootDir: 'src' }]), []);
         assert.deepStrictEqual(runWithOptions('layer-imports', rules['layer-imports'], [{
             alias: '@',
@@ -58,6 +64,8 @@ describe('rule option schemas', () => {
 
     it('rejects unknown keys, non-string pattern entries, and extra options', () => {
         const invalidOptions = [
+            ['forbidden-app-imports', [{ allowPatterns: [1] }]],
+            ['forbidden-app-imports', [{ unknown: true }]],
             ['fsd-relative-path', [{ alias: '@', unknown: true }]],
             ['layer-imports', [{ ignoreImportPatterns: ['**/ok', 1] }]],
             ['public-api-imports', [{ testFilesPatterns: [1] }]],
