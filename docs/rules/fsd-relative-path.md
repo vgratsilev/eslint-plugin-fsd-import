@@ -7,6 +7,7 @@ Checks that imports within the same Feature-Sliced Design
 
 This rule reports non-relative imports when the importing file and imported module
 belong to the same FSD slice. Auto-fix is available.
+The fix changes only the module specifier and retains its original quote style.
 
 The rule checks the following layers: `entities`, `features`, `pages`, `shared`,
 and `widgets`.

@@ -11,8 +11,9 @@ and `widgets`.
 Use `index.ts` as the regular public API entrypoint. The `testing.ts` entrypoint
 is allowed only for files matching `testFilesPatterns`.
 
-Auto-fix is available for deep imports. The fixer rewrites them to `layer/slice`
-or `alias/layer/slice`.
+Auto-fix is available for deep imports. The fixer rewrites only the module
+specifier to `layer/slice` or `alias/layer/slice`, retaining its quote style and
+the rest of the import declaration.
 
 ## Rule Options
 
