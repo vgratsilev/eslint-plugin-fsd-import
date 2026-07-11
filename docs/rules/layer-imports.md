@@ -29,6 +29,8 @@ Allowed imports:
 ## Rule Options
 
 * `alias`: alias prefix used for absolute imports.
+* `rootDir`: source root directory used to parse filenames and root-prefixed
+  imports. Defaults to `src`.
 * `ignoreImportPatterns`: glob patterns for import paths that should skip this rule.
 
 Examples of **incorrect** code for this rule:

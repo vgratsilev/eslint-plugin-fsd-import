@@ -14,9 +14,11 @@ and `widgets`.
 ## Rule Options
 
 * `alias`: alias prefix used for absolute imports.
+* `rootDir`: source root directory used to resolve the importing filename and
+  root-prefixed imports. Defaults to `src`.
 
 ```js
-"fsd-import/fsd-relative-path": ["error", { alias: "@" }]
+"fsd-import/fsd-relative-path": ["error", { alias: "@", rootDir: "src" }]
 ```
 
 Project structure example:

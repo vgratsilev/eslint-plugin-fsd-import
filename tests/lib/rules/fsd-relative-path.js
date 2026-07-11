@@ -27,6 +27,11 @@ ruleTester.run('fsd-relative-path', rule, {
             filename: 'C:\\project\\src\\entities\\Article',
             code: 'import { addCommentFormReducer, addCommentFormActions } from \'../../model/slice/addCommentFormSlice\';',
         },
+        {
+            filename: '/project/client/entities/Article/index.ts',
+            code: 'import { Article } from \'some-@/entities/Article/model\';',
+            options: [{ alias: '@', rootDir: 'client' }],
+        },
     ],
 
     invalid: [
@@ -48,6 +53,13 @@ ruleTester.run('fsd-relative-path', rule, {
             code: 'import { addCommentFormReducer, addCommentFormActions } from \'entities/Article/model/slice/addCommentFormSlice\';',
             errors: [{ message: 'Within one slice all paths should be related.' }],
             output: 'import { addCommentFormReducer, addCommentFormActions } from \'../../model/slice/addCommentFormSlice\';',
+        },
+        {
+            filename: '/project/client/entities/Article/index.ts',
+            code: 'import { Article } from \'client/entities/Article/model\';',
+            errors: [{ message: 'Within one slice all paths should be related.' }],
+            options: [{ rootDir: 'client' }],
+            output: 'import { Article } from \'./model\';',
         },
     ],
 });

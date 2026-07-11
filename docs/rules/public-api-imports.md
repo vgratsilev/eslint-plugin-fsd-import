@@ -17,6 +17,8 @@ or `alias/layer/slice`.
 ## Rule Options
 
 * `alias`: alias prefix used for absolute imports.
+* `rootDir`: source root directory used to normalize root-prefixed imports.
+  Defaults to `src`.
 * `layersOverride`: layer names to check instead of the default layers.
 * `testFilesPatterns`: glob patterns for files that may import from `testing.ts`.
 
@@ -25,6 +27,7 @@ or `alias/layer/slice`.
   "error",
   {
     alias: "@",
+    rootDir: "src",
     layersOverride: ["features", "entities", "pages", "widgets"],
     testFilesPatterns: ["**/*.test.ts", "**/StoreDecorator.tsx"]
   }

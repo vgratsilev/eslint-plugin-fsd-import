@@ -82,6 +82,10 @@ ruleTester.run('public-api-imports', rule, {
                 testFilesPatterns: ['**/*.test.ts', '**/*.test.ts', '**/StoreDecorator.tsx'],
             }],
         },
+        {
+            code: 'import { Article } from \'some-@/entities/Article/model\';',
+            options: [{ alias: '@', rootDir: 'client' }],
+        },
     ],
 
     invalid: [
@@ -139,6 +143,12 @@ ruleTester.run('public-api-imports', rule, {
                 alias: '@',
                 testFilesPatterns: ['**/*.test.ts', '**/*.test.ts', '**/StoreDecorator.tsx'],
             }],
+        },
+        {
+            code: 'import { Article } from \'client/entities/Article/model\';',
+            errors: [{ message: 'Absolute import is allowed only from public API (index.ts).' }],
+            options: [{ rootDir: 'client' }],
+            output: 'import { Article } from \'client/entities/Article\';',
         },
     ],
 });
