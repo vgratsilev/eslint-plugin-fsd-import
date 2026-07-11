@@ -19,8 +19,7 @@
     "test": "mocha tests --recursive"
   },
   "dependencies": {
-    "micromatch": "^4.0.8",
-    "requireindex": "^1.2.0"
+    "micromatch": "^4.0.8"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",

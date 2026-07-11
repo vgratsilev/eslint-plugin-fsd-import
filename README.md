@@ -58,3 +58,7 @@ Check that FSD imports are correct:
 
 Rule-specific options and examples are documented on each rule page.
 
+## Contributing
+
+When adding a rule, register it explicitly in `lib/index.js`, add its tests and
+documentation, and include it in the published configuration when appropriate.
