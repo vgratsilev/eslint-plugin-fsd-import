@@ -8,6 +8,7 @@ const rules = {
     'layer-imports': require('../../lib/rules/layer-imports'),
     'no-cross-slice-relative-imports': require('../../lib/rules/no-cross-slice-relative-imports'),
     'public-api-imports': require('../../lib/rules/public-api-imports'),
+    'shared-public-api-imports': require('../../lib/rules/shared-public-api-imports'),
 };
 
 function runWithOptions(name, rule, options) {
@@ -48,6 +49,11 @@ describe('rule option schemas', () => {
             layers: ['entities'],
             ignoreImportPatterns: ['**/generated'],
         }]), []);
+        assert.deepStrictEqual(runWithOptions('shared-public-api-imports', rules['shared-public-api-imports'], [{
+            rootDir: 'src',
+            segments: ['ui'],
+            ignoreImportPatterns: ['**/generated'],
+        }]), []);
     });
 
     it('rejects unknown keys, non-string pattern entries, and extra options', () => {
@@ -56,6 +62,8 @@ describe('rule option schemas', () => {
             ['layer-imports', [{ ignoreImportPatterns: ['**/ok', 1] }]],
             ['public-api-imports', [{ testFilesPatterns: [1] }]],
             ['no-cross-slice-relative-imports', [{ layers: ['entities', 1] }]],
+            ['shared-public-api-imports', [{ segments: ['ui', 1] }]],
+            ['shared-public-api-imports', [{ unknown: true }]],
             ['fsd-relative-path', [{}, {}]],
         ];
 

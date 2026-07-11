@@ -11,6 +11,7 @@ describe('plugin export', () => {
             'layer-imports',
             'no-cross-slice-relative-imports',
             'public-api-imports',
+            'shared-public-api-imports',
         ]);
         assert.strictEqual(packageJson.dependencies?.requireindex, undefined);
     });
