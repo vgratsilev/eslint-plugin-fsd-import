@@ -77,6 +77,11 @@ ruleTester.run('layer-imports', rule, {
                 },
             ],
         },
+        {
+            filename: '/project/client/entities/Article.tsx',
+            code: 'import { Article } from \'some-@/features/Article\';',
+            options: [{ alias: '@', rootDir: 'client' }],
+        },
     ],
 
     invalid: [
@@ -97,6 +102,12 @@ ruleTester.run('layer-imports', rule, {
             code: 'import { addCommentFormActions, addCommentFormReducer } from \'@/pages/Main.tsx\';',
             errors: [{ message: 'Current layer can import only layers below: (features, entities, shared).' }],
             options: aliasOptions,
+        },
+        {
+            filename: '/project/client/entities/Article/file.ts',
+            code: 'import { Feature } from \'client/features/Button.tsx\';',
+            errors: [{ message: 'Current layer can import only layers below: (entities, shared).' }],
+            options: [{ rootDir: 'client' }],
         },
     ],
 });

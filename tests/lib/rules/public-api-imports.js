@@ -9,7 +9,9 @@
 //------------------------------------------------------------------------------
 
 const rule = require('../../../lib/rules/public-api-imports'),
-    RuleTester = require('eslint').RuleTester;
+    RuleTester = require('eslint').RuleTester,
+    // eslint-disable-next-line node/no-missing-require, node/no-unpublished-require
+    parser = require('@typescript-eslint/parser');
 
 //------------------------------------------------------------------------------
 // Tests
@@ -18,6 +20,7 @@ const rule = require('../../../lib/rules/public-api-imports'),
 const ruleTester = new RuleTester({
     languageOptions: {
         ecmaVersion: 6,
+        parser,
         sourceType: 'module',
     },
 });
@@ -82,6 +85,10 @@ ruleTester.run('public-api-imports', rule, {
                 testFilesPatterns: ['**/*.test.ts', '**/*.test.ts', '**/StoreDecorator.tsx'],
             }],
         },
+        {
+            code: 'import { Article } from \'some-@/entities/Article/model\';',
+            options: [{ alias: '@', rootDir: 'client' }],
+        },
     ],
 
     invalid: [
@@ -139,6 +146,17 @@ ruleTester.run('public-api-imports', rule, {
                 alias: '@',
                 testFilesPatterns: ['**/*.test.ts', '**/*.test.ts', '**/StoreDecorator.tsx'],
             }],
+        },
+        {
+            code: 'import { Article } from \'client/entities/Article/model\';',
+            errors: [{ message: 'Absolute import is allowed only from public API (index.ts).' }],
+            options: [{ rootDir: 'client' }],
+            output: 'import { Article } from \'client/entities/Article\';',
+        },
+        {
+            code: 'import type { Article } from "entities/Article/model";',
+            errors: [{ message: 'Absolute import is allowed only from public API (index.ts).' }],
+            output: 'import type { Article } from "entities/Article";',
         },
     ],
 });
