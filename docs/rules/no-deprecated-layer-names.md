@@ -15,4 +15,17 @@ the import module specifier.
 }]
 ```
 
+Examples of **incorrect** code:
+
+```js
+import { User } from '@/oldEntities/User';
+// Autofix: import { User } from '@/entities/User';
+```
+
+Examples of **correct** code:
+
+```js
+import { User } from '@/entities/User';
+```
+
 The fixer never moves files or accesses the filesystem.

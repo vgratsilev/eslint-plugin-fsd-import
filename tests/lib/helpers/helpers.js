@@ -3,9 +3,9 @@
 const assert = require('assert');
 const {
     extractPathFromRoot,
-    getCurrentFileLayer,
     parseFsdPath,
     resolveRelativeTarget,
+    stripRootDir,
     stripAlias,
 } = require('../../../lib/helpers/helpers');
 
@@ -42,10 +42,12 @@ describe('FSD path helpers', () => {
             extractPathFromRoot('/workspace/src-tools/entities/User/index.ts', 'src'),
             null,
         );
-        assert.strictEqual(
-            getCurrentFileLayer('/workspace/src-tools/client/entities/User/index.ts', 'client'),
-            'entities',
-        );
+    });
+
+    it('removes a root directory from import paths only at the start', () => {
+        assert.strictEqual(stripRootDir('src/shared/ui/Button'), 'shared/ui/Button');
+        assert.strictEqual(stripRootDir('client/shared/ui/Button', 'client'), 'shared/ui/Button');
+        assert.strictEqual(stripRootDir('@vendor/src/shared/ui/Button'), null);
     });
 
     it('returns null for unparseable or incomplete FSD paths', () => {

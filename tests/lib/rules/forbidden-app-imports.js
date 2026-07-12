@@ -15,6 +15,10 @@ ruleTester.run('forbidden-app-imports', rule, {
         { code: 'import { Button } from \'shared/ui\';' },
         { code: 'import { app } from \'app/providers\';', options: [{ allowPatterns: ['app/providers'] }] },
         {
+            code: 'import { app } from \'@/app/providers\';',
+            options: [{ alias: '@', allowPatterns: ['app/providers'] }],
+        },
+        {
             filename: '/project/src/app/setup.test.ts',
             code: 'import { app } from \'@/app/providers\';',
             options: [{ alias: '@', testFilesPatterns: ['**/*.test.ts'] }],

@@ -25,6 +25,11 @@ ruleTester.run('slice-boundaries', rule, {
             filename: '/project/src/entities/Article/ui/Card.ts',
             code: 'import { User } from \'../../User/model\';',
         },
+        {
+            filename: '/project/src/features/Article/ui/Card.ts',
+            code: 'import { User } from \'features/User\';',
+            options: [{ layers: ['entities'] }],
+        },
     ],
     invalid: [
         {
@@ -36,6 +41,18 @@ ruleTester.run('slice-boundaries', rule, {
             filename: '/project/client/entities/Article/ui/Card.ts',
             code: 'import { User } from \'@/client/entities/User\';',
             options: [{ alias: '@', rootDir: 'client' }],
+            errors: [{ message: 'Imports must not cross FSD slice boundaries.' }],
+        },
+        {
+            filename: '/project/src/entities/Article/ui/Card.test.ts',
+            code: 'import { User } from \'entities/User\';',
+            options: [{ allowTestingPublicApi: false, testFilesPatterns: ['**/*.test.ts'] }],
+            errors: [{ message: 'Imports must not cross FSD slice boundaries.' }],
+        },
+        {
+            filename: '/project/src/features/Article/ui/Card.ts',
+            code: 'import { User } from \'features/User\';',
+            options: [{ layers: ['features'] }],
             errors: [{ message: 'Imports must not cross FSD slice boundaries.' }],
         },
     ],

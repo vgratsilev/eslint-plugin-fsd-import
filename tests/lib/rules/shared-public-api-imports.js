@@ -16,7 +16,12 @@ ruleTester.run('shared-public-api-imports', rule, {
         { code: 'import { format } from \'shared/lib\';' },
         { code: 'import { Button } from \'@/shared/ui\';', options: [{ alias: '@' }] },
         { code: 'import { Button } from \'shared/ui/Button\';', options: [{ ignoreImportPatterns: ['**/Button'] }] },
+        {
+            code: 'import { Button } from \'@/shared/ui/Button\';',
+            options: [{ alias: '@', ignoreImportPatterns: ['shared/ui/**'] }],
+        },
         { code: 'import { Button } from \'entities/Button/ui\';' },
+        { code: 'import { Button } from \'@vendor/src/shared/ui/Button\';' },
     ],
     invalid: [
         {

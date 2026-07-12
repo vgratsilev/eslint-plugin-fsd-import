@@ -16,7 +16,8 @@
   "exports": "./lib/index.js",
   "scripts": {
     "lint": "eslint .",
-    "test": "mocha tests --recursive"
+    "test": "mocha tests --recursive",
+    "test:compatibility": "node scripts/verify-eslint-compatibility.js"
   },
   "dependencies": {
     "micromatch": "^4.0.8"

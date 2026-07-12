@@ -29,6 +29,16 @@ ruleTester.run('no-cross-slice-relative-imports', rule, {
             code: 'import { User } from \'../../User/model\';',
             options: [{ ignoreImportPatterns: ['../../User/**'] }],
         },
+        {
+            filename: 'C:\\project\\src\\entities\\Article\\ui\\Card.ts',
+            code: 'import { User } from \'..\\\\..\\\\User\\\\model\';',
+            options: [{ ignoreImportPatterns: ['../../User/**'] }],
+        },
+        {
+            filename: '/project/src/features/Article/ui/Card.ts',
+            code: 'import { User } from \'../../User/model\';',
+            options: [{ layers: ['entities'] }],
+        },
     ],
     invalid: [
         {
@@ -45,6 +55,12 @@ ruleTester.run('no-cross-slice-relative-imports', rule, {
             filename: '/project/client/entities/Article/ui/Card.ts',
             code: 'import { User } from \'../../User/model\';',
             options: [{ rootDir: 'client' }],
+            errors: [{ message: 'Relative imports must not cross FSD slice boundaries.' }],
+        },
+        {
+            filename: '/project/src/features/Article/ui/Card.ts',
+            code: 'import { User } from \'../../User/model\';',
+            options: [{ layers: ['features'] }],
             errors: [{ message: 'Relative imports must not cross FSD slice boundaries.' }],
         },
     ],
