@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.1.0
 
 * Add root-aware FSD path parsing and Windows/Unix fixture coverage.
 * Add cross-slice, shared public API, app-boundary, deprecated-layer, and
