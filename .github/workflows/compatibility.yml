@@ -25,3 +25,4 @@ jobs:
       - run: npm ci
       - run: npm install --no-save --package-lock=false --legacy-peer-deps eslint@${{ matrix.eslint }}
       - run: npm run test:compatibility
+      - run: npm run test:package

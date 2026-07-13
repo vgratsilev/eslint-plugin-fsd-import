@@ -14,9 +14,16 @@
   "author": "vgratsilev",
   "main": "./lib/index.js",
   "exports": "./lib/index.js",
+  "files": [
+    "lib",
+    "docs/rules",
+    "README.md",
+    "CHANGELOG.md"
+  ],
   "scripts": {
     "lint": "eslint .",
     "test": "mocha tests --recursive",
+    "test:package": "node scripts/verify-package.js",
     "test:compatibility": "node scripts/verify-eslint-compatibility.js"
   },
   "dependencies": {
